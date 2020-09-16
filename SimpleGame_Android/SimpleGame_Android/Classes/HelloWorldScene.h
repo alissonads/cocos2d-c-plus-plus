@@ -27,6 +27,14 @@
 
 #include "cocos2d.h"
 
+enum class PhysicsCategory 
+{
+    NONE = 0,
+    MONSTER = (1 << 0),
+    PROJECTILE = (1 << 1),
+    ALL = MONSTER | PROJECTILE
+};
+
 class HelloWorld : public cocos2d::Scene
 {
 private:
@@ -36,7 +44,7 @@ private:
     void addMonster(const float secs);
 
     bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
-    
+
 public:
     static cocos2d::Scene* createScene();
 

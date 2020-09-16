@@ -31,6 +31,11 @@ USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
+    auto scene = Scene::createWithPhysics();
+    auto physicsWorld = scene->getPhysicsWorld();
+    physicsWorld->setGravity(Vec2::ZERO);
+    physicsWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+
     return HelloWorld::create();
 }
 
@@ -51,6 +56,17 @@ void HelloWorld::addMonster(const float secs)
     }
     else
     {
+        auto monsterSize = monster->getContentSize();
+        auto physicsBody = PhysicsBody::createBox(Size(monsterSize.width, monsterSize.height),
+                                                  PhysicsMaterial(0.1f, 1.0f, 0.0f));
+        physicsBody->setDynamic(true);
+
+        physicsBody->setCategoryBitmask(static_cast<int>(PhysicsCategory::MONSTER));
+        physicsBody->setCollisionBitmask(static_cast<int>(PhysicsCategory::NONE));
+        physicsBody->setContactTestBitmask(static_cast<int>(PhysicsCategory::PROJECTILE));
+
+        monster->setPhysicsBody(physicsBody);
+
         auto monsterContentSize = monster->getContentSize();
         auto selfContentSize = this->getContentSize();
         int minY = monsterContentSize.height / 2;
