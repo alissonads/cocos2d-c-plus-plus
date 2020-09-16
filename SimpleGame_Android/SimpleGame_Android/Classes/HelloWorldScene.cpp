@@ -24,6 +24,8 @@
 
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include <iostream>
+#include <time.h>
 
 USING_NS_CC;
 
@@ -39,6 +41,42 @@ static void problemLoading(const char* filename)
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
+void HelloWorld::addMonster(const float secs) 
+{
+    auto monster = Sprite::create("SimpleGameResources/monster.png");
+
+    if (monster == nullptr)
+    {
+        problemLoading("'player.png'");
+    }
+    else
+    {
+        auto monsterContentSize = monster->getContentSize();
+        auto selfContentSize = this->getContentSize();
+        int minY = monsterContentSize.height / 2;
+        int maxY = selfContentSize.height - monsterContentSize.height / 2;
+        int rangeY = maxY - minY;
+        int randomY = (rand() % rangeY) + minY;
+
+        monster->setPosition(Vec2(selfContentSize.width + monsterContentSize.width/2, 
+                                 randomY));
+        this->addChild(monster);
+
+        int minDuration = 2;
+        int maxDuration = 4;
+        int rangeDuration = maxDuration - minDuration;
+        int randomDuration = (rand() % rangeDuration) + minDuration;
+
+        //cria a ação do movimento do monstro
+        auto actionMove = MoveTo::create(randomDuration, Vec2(-monsterContentSize.width/2, randomY));
+        //crea a ação de remover, para remover o sprite da arvore quando necessario
+        auto actionRemove = RemoveSelf::create();
+        //executa uma sequencia de ações de cada vez
+        monster->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+    }
+
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -50,13 +88,12 @@ bool HelloWorld::init()
     }
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    auto origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+/***********************************************************/
+    //if (!Layer::init())
+    //    return false;
 
-    // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
@@ -80,31 +117,7 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-
-    /*auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        problemLoading("'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                                origin.y + visibleSize.height - label->getContentSize().height));
-
-        // add the label as a child to this layer
-        this->addChild(label, 1);
-    }*/
-
-/***********************************************************/
-    //if (!Layer::init())
-    //    return false;
-
+    //plano de fundo
     auto background = DrawNode::create();
     background->drawSolidRect(origin, visibleSize, Color4F(0.6,0.6,0.6,1.0));
     this->addChild(background);
@@ -122,6 +135,11 @@ bool HelloWorld::init()
         // add the sprite as a child to this layer
         this->addChild(player);
     }
+
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    //chama o metodo addMoster a cada 1,5 segundos
+    this->schedule(schedule_selector(HelloWorld::addMonster), 1.5);
 
     return true;
 }

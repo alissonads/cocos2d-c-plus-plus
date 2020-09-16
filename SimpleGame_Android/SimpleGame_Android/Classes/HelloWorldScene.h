@@ -31,7 +31,10 @@ class HelloWorld : public cocos2d::Scene
 {
 private:
     cocos2d::Sprite *player;
-    
+
+private:
+    void addMonster(const float secs);
+
 public:
     static cocos2d::Scene* createScene();
 
