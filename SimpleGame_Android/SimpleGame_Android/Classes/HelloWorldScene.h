@@ -35,6 +35,8 @@ private:
 private:
     void addMonster(const float secs);
 
+    bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+    
 public:
     static cocos2d::Scene* createScene();
 

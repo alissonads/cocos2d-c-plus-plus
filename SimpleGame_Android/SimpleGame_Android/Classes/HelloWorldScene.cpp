@@ -77,6 +77,44 @@ void HelloWorld::addMonster(const float secs)
 
 }
 
+bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
+{
+    //exemplo de como obter o objeto player
+    //auto node = unused_event->getCurrentTarget();
+
+    //recupera a posição do toque na tela
+    auto touchLocation = touch->getLocation();
+    //calcula a distancia do toque com relação ao player para a direção do tiro
+    auto offset = touchLocation - player->getPosition();
+
+    //se o valor de x for menor que zero
+    //o player estara atirando para traz
+    if (offset.x < 0)
+        return true;
+
+    //cria um projetio
+    auto projectile = Sprite::create("SimpleGameResources/projectile.png");
+    //posiciona na posição do jogador
+    projectile->setPosition(player->getPosition());
+    //adiciona na arvore de renderização
+    this->addChild(projectile);
+
+    //normaliza o vetor de de direção
+    offset.normalize();
+    //multiplica por 1000 para obter um valor fora da tela
+    auto shootAmount = offset * 1000;
+    
+    auto realDest = shootAmount + projectile->getPosition();
+    //cria a ação para mover o projetil por 2 segundos
+    auto actionMove = MoveTo::create(2.0f, realDest);
+    //cria a ação para remover o sprite
+    auto actionRemove = RemoveSelf::create();
+    //executa a sequencia de ações
+    projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+
+    return true;
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -140,6 +178,11 @@ bool HelloWorld::init()
 
     //chama o metodo addMoster a cada 1,5 segundos
     this->schedule(schedule_selector(HelloWorld::addMonster), 1.5);
+    //chama o metodo de retorno uma vez para cada evento de toque
+    auto eventListener = EventListenerTouchOneByOne::create();
+    //chama ao toque na tela
+    eventListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(eventListener, player);
 
     return true;
 }
