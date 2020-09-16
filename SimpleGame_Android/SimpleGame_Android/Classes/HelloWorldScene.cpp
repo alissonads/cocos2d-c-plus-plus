@@ -86,7 +86,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    /*auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
     if (label == nullptr)
     {
         problemLoading("'fonts/Marker Felt.ttf'");
@@ -99,22 +99,30 @@ bool HelloWorld::init()
 
         // add the label as a child to this layer
         this->addChild(label, 1);
-    }
+    }*/
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    if (sprite == nullptr)
+/***********************************************************/
+    //if (!Layer::init())
+    //    return false;
+
+    auto background = DrawNode::create();
+    background->drawSolidRect(origin, visibleSize, Color4F(0.6,0.6,0.6,1.0));
+    this->addChild(background);
+
+    player = Sprite::create("SimpleGameResources/player.png");
+    if (player == nullptr)
     {
-        problemLoading("'HelloWorld.png'");
+        problemLoading("'player.png'");
     }
     else
     {
         // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+        player->setPosition(Vec2(visibleSize.width * 0.1, visibleSize.height*0.5));
 
         // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
+        this->addChild(player);
     }
+
     return true;
 }
 
