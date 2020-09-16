@@ -68,7 +68,7 @@ bool Scene1::init()
     baseda na classe Optional do java 
     serve para evitar as verificações com nullptr.
     */
-    auto optionalLabel = OptionalObject<Label>::create(Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24));
+    auto optionalLabel = OptionalObject<Label>::create(Label::createWithTTF("Adicionando Meu Primeiro Sprite", "fonts/Marker Felt.ttf", 18));
     
     //auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
     /*if (!label)
@@ -95,7 +95,8 @@ bool Scene1::init()
     }
 
     //cria o sprite
-    auto sprite = Sprite::create("HelloWorld.png");
+    //auto sprite = Sprite::create("HelloWorld.png");
+    auto sprite = Sprite::create("Images/player.png");
 
     //verifica se o sprite eh invalido
     if(!sprite)
