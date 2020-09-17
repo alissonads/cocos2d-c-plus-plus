@@ -27,6 +27,10 @@
 #include <iostream>
 #include <time.h>
 
+#define BACKGROUND_MUSIC_SFX "background-music-aac.mp3"
+#define PEW_PEW_SFX          "pew-pew-lei.mp3"
+#define PATH_FILES           "SimpleGameResources/"
+
 using namespace CocosDenshion;
 
 USING_NS_CC;
@@ -171,9 +175,11 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
         auto actionRemove = RemoveSelf::create();
         //executa a sequencia de ações
         projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+
+        //le e reproduz o efeito sonoro do tiro
+        SimpleAudioEngine::getInstance()->playEffect(PATH_FILES PEW_PEW_SFX);
     }
     
-
     return true;
 }
 
@@ -239,9 +245,15 @@ bool HelloWorld::init()
     eventListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(eventListener, player);
 
+    //cria um ouvinte decontato
     auto contactListener = EventListenerPhysicsContact::create();
+    //vincula a ação ao ouvinte de contato
     contactListener->onContactBegin = CC_CALLBACK_1(HelloWorld::onContactBegan, this);
+    //adiciona o ouvinte de contato
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
+
+    //le e reproduz em loop a musica de fundo
+    SimpleAudioEngine::getInstance()->playBackgroundMusic(PATH_FILES BACKGROUND_MUSIC_SFX, true);
 
     return true;
 }
