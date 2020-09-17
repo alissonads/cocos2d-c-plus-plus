@@ -35,7 +35,7 @@ enum class PhysicsCategory
     ALL = MONSTER | PROJECTILE
 };
 
-class HelloWorld : public cocos2d::Scene
+class HelloWorld : public cocos2d::Layer
 {
 private:
     cocos2d::Sprite *player;
@@ -44,6 +44,8 @@ private:
     void addMonster(const float secs);
 
     bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+
+    bool onContactBegan(cocos2d::PhysicsContact &contact);
 
 public:
     static cocos2d::Scene* createScene();

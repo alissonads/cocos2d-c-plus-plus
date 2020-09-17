@@ -27,16 +27,23 @@
 #include <iostream>
 #include <time.h>
 
+using namespace CocosDenshion;
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
     auto scene = Scene::createWithPhysics();
     auto physicsWorld = scene->getPhysicsWorld();
+    //define a gravidade para zero, ou seja, desativa a gravidade
     physicsWorld->setGravity(Vec2::ZERO);
+    //ativa os desenhos dos corpos fisicos
     physicsWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
-    return HelloWorld::create();
+    auto layer = HelloWorld::create();
+    scene->addChild(layer);
+
+    return scene;
 }
 
 // Print useful error message instead of segfaulting when files are not there.
@@ -56,18 +63,25 @@ void HelloWorld::addMonster(const float secs)
     }
     else
     {
-        auto monsterSize = monster->getContentSize();
-        auto physicsBody = PhysicsBody::createBox(Size(monsterSize.width, monsterSize.height),
-                                                  PhysicsMaterial(0.1f, 1.0f, 0.0f));
-        physicsBody->setDynamic(true);
-
-        physicsBody->setCategoryBitmask(static_cast<int>(PhysicsCategory::MONSTER));
-        physicsBody->setCollisionBitmask(static_cast<int>(PhysicsCategory::NONE));
-        physicsBody->setContactTestBitmask(static_cast<int>(PhysicsCategory::PROJECTILE));
-
-        monster->setPhysicsBody(physicsBody);
-
         auto monsterContentSize = monster->getContentSize();
+
+        /**************************** Configuração do corpo fisica **************************************/
+        auto physicsBody = PhysicsBody::createBox(Size(monsterContentSize.width, 
+                                                       monsterContentSize.height),
+                                                  PhysicsMaterial(0.1f, 1.0f, 0.0f));
+
+        //A fisica não aplicara forças ao monstro
+        physicsBody->setDynamic(true);
+        //define o tipo do ator
+        physicsBody->setCategoryBitmask(static_cast<int>(PhysicsCategory::MONSTER));
+        //define os objetos que afetar fisicamente e esse objeto
+        physicsBody->setCollisionBitmask(static_cast<int>(PhysicsCategory::NONE));
+        //define os tipos de objetos com os quais as colisões devem gerar notificações
+        physicsBody->setContactTestBitmask(static_cast<int>(PhysicsCategory::PROJECTILE));
+        //atribui ao monstro
+        monster->setPhysicsBody(physicsBody);
+        /************************************************************************************************/
+
         auto selfContentSize = this->getContentSize();
         int minY = monsterContentSize.height / 2;
         int maxY = selfContentSize.height - monsterContentSize.height / 2;
@@ -76,6 +90,7 @@ void HelloWorld::addMonster(const float secs)
 
         monster->setPosition(Vec2(selfContentSize.width + monsterContentSize.width/2, 
                                  randomY));
+
         this->addChild(monster);
 
         int minDuration = 2;
@@ -91,6 +106,17 @@ void HelloWorld::addMonster(const float secs)
         monster->runAction(Sequence::create(actionMove, actionRemove, nullptr));
     }
 
+}
+
+bool HelloWorld::onContactBegan(PhysicsContact &contact)
+{
+    auto nodeA = contact.getShapeA()->getBody()->getNode();
+    auto nodeB = contact.getShapeB()->getBody()->getNode();
+
+    nodeA->removeFromParent();
+    nodeB->removeFromParent();
+
+    return true;
 }
 
 bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
@@ -110,23 +136,43 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
 
     //cria um projetio
     auto projectile = Sprite::create("SimpleGameResources/projectile.png");
-    //posiciona na posição do jogador
-    projectile->setPosition(player->getPosition());
-    //adiciona na arvore de renderização
-    this->addChild(projectile);
 
-    //normaliza o vetor de de direção
-    offset.normalize();
-    //multiplica por 1000 para obter um valor fora da tela
-    auto shootAmount = offset * 1000;
+    if (!projectile)
+    {
+        problemLoading("'projectile.png'");
+    }
+    else {
+        /*************************** Configurando o corpo fisico **************************************/
+        auto projectileSize = projectile->getContentSize();
+        auto physicsBody = PhysicsBody::createCircle(projectileSize.width / 2);
+
+        physicsBody->setDynamic(true);
+        physicsBody->setCategoryBitmask(static_cast<int>(PhysicsCategory::PROJECTILE));
+        physicsBody->setCollisionBitmask(static_cast<int>(PhysicsCategory::NONE));
+        physicsBody->setContactTestBitmask(static_cast<int>(PhysicsCategory::MONSTER));
+
+        projectile->setPhysicsBody(physicsBody);
+        /**********************************************************************************************/
+
+        //posiciona na posição do jogador
+        projectile->setPosition(player->getPosition());
+        //adiciona na arvore de renderização
+        this->addChild(projectile);
+
+        //normaliza o vetor de de direção
+        offset.normalize();
+        //multiplica por 1000 para obter um valor fora da tela
+        auto shootAmount = offset * 1000;
+
+        auto realDest = shootAmount + projectile->getPosition();
+        //cria a ação para mover o projetil por 2 segundos
+        auto actionMove = MoveTo::create(2.0f, realDest);
+        //cria a ação para remover o sprite
+        auto actionRemove = RemoveSelf::create();
+        //executa a sequencia de ações
+        projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+    }
     
-    auto realDest = shootAmount + projectile->getPosition();
-    //cria a ação para mover o projetil por 2 segundos
-    auto actionMove = MoveTo::create(2.0f, realDest);
-    //cria a ação para remover o sprite
-    auto actionRemove = RemoveSelf::create();
-    //executa a sequencia de ações
-    projectile->runAction(Sequence::create(actionMove, actionRemove, nullptr));
 
     return true;
 }
@@ -134,19 +180,11 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
-    if ( !Scene::init() )
-    {
+    if (!Layer::init())
         return false;
-    }
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
-
-/***********************************************************/
-    //if (!Layer::init())
-    //    return false;
 
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
@@ -194,11 +232,16 @@ bool HelloWorld::init()
 
     //chama o metodo addMoster a cada 1,5 segundos
     this->schedule(schedule_selector(HelloWorld::addMonster), 1.5);
+
     //chama o metodo de retorno uma vez para cada evento de toque
     auto eventListener = EventListenerTouchOneByOne::create();
     //chama ao toque na tela
     eventListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(eventListener, player);
+
+    auto contactListener = EventListenerPhysicsContact::create();
+    contactListener->onContactBegin = CC_CALLBACK_1(HelloWorld::onContactBegan, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 
     return true;
 }
