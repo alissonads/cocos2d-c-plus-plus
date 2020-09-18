@@ -33,6 +33,8 @@ public:
 
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
 
+    void menuCloseCallback(cocos2d::Ref* pSender);
+
 };
 
 #endif//__MENU_SCENE_H__
