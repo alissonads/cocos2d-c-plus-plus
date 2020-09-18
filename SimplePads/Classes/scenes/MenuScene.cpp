@@ -1,5 +1,4 @@
 #include "MenuScene.h"
-#include "extensions/cocos-ext.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -26,20 +25,18 @@ bool MenuScene::init()
     auto origin = Director::getInstance()->getVisibleOrigin();
 
     //plano de fundo
-    auto background = DrawNode::create();
-    background->drawSolidRect(origin, winSize, Color4F(0.6,0.6,0.6,1.0));
+    //auto background = DrawNode::create();
+    //background->drawSolidRect(origin, winSize, Color4F(0.6,0.6,0.6,1.0));
 
-    this->addChild(background);
+    //this->addChild(background);
 
-    //auto tableView = TableView::create(this, Size(250, 60));
-
-    //tableView->setDirection(ScrollView::Direction::VERTICAL);
-    //tableView->setPosition(Vec2(20, winSize.height/2 - 50));
-    //tableView->setDelegate(this);
-
-    //this->addChild(tableView);
-
-    //tableView->reloadData();
+	auto tableView = TableView::create(this, Size(741, 500));
+	tableView->setDirection(ScrollView::Direction::VERTICAL);
+	tableView->setPosition(Vec2(20,-(winSize.height/2+100)));
+	tableView->setDelegate(this);
+	tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
+	this->addChild(tableView);
+	tableView->reloadData();
 
     return true;
 }
@@ -55,7 +52,7 @@ void MenuScene::tableCellTouched(TableView* table, TableViewCell* cell)
 
 Size MenuScene::tableCellSizeForIndex(TableView *table, ssize_t idx) 
 {
-    return Size(60, 60);
+    return Size(741, 100);
 }
 
 TableViewCell* MenuScene::tableCellAtIndex(TableView *table, ssize_t idx) 
@@ -68,7 +65,7 @@ TableViewCell* MenuScene::tableCellAtIndex(TableView *table, ssize_t idx)
         cell = new (std::nothrow) TableViewCell();
         cell->autorelease();
 
-        auto sprite = Sprite::create("images/Icon.png");
+        auto sprite = Sprite::create("images/menu_item_Back.png");
         
         sprite->setAnchorPoint(Vec2::ZERO);
         sprite->setPosition(Vec2::ZERO);
@@ -88,9 +85,11 @@ TableViewCell* MenuScene::tableCellAtIndex(TableView *table, ssize_t idx)
         auto label = (Label*)cell->getChildByTag(123);
         label->setString(id);
     }
+
+    return cell;
 }
 
 ssize_t MenuScene::numberOfCellsInTableView(TableView *table) 
 {
-    return 20;
+    return 5;
 }
