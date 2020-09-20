@@ -1,4 +1,5 @@
 #include "MenuScene.h"
+#include "settings/Backgound.h"
 #include <iostream>
 
 #define PATH_IMAGE "images/"
@@ -26,26 +27,37 @@ bool MenuScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
 
+    ///>>Encapsular
+    /*********************** cria e configura o botao de sair *************************************/
     auto closeItem = MenuItemImage::create(PATH_IMAGE "bck_close.png",
                                            PATH_IMAGE "bck_close.png",
-                                           CC_CALLBACK_1(MenuScene::menuCloseCallback, this));
+                                           /*CC_CALLBACK_1(MenuScene::menuCloseCallback, this)*/
+                                           [](Ref* pSender) {
+                                               Director::getInstance()->end();
+                                           });
     closeItem->setAnchorPoint(Vec2(0, 1));
     auto closeItemSize = closeItem->getContentSize();
     closeItem->setPosition(Vec2(10, winSize.height - closeItemSize.height));
-
+    /***********************************************************************************************/
+    //cria o menu
     auto menu = Menu::create(closeItem, NULL);
+    //posiciona o menu
     menu->setPosition(Vec2::ZERO);
+    //adiciona o menu a arvore
     this->addChild(menu, 1);
 
+    //cria o sprite do x do botão
     auto x = Sprite::create(PATH_IMAGE "x.png");
+    //posiciona o botao com relação a imagem de fundo do botão
     x->setPosition(Vec2(closeItemSize.width/2,closeItemSize.height/2));
+    //adiciona ao botão
     closeItem->addChild(x);
+    ////////////////////////>>
 
     //plano de fundo
-    auto background = DrawNode::create();
-    background->drawSolidRect(origin, winSize, Color4F(36,43,46,255)/255);
-    this->addChild(background);
-
+    this->addChild(Background::createBgSolidColorI(36,43,46)->getNode());
+    
+    //conteiner de itens do menu musical
 	auto tableView = TableView::create(this, Size(400, 500));
 	tableView->setDirection(ScrollView::Direction::VERTICAL);
 	tableView->setPosition(Vec2(65,-(winSize.height/2+130)));
@@ -116,7 +128,7 @@ ssize_t MenuScene::numberOfCellsInTableView(TableView *table)
     return 20;
 }
 
-void MenuScene::menuCloseCallback(cocos2d::Ref* pSender)
+void MenuScene::menuCloseCallback(Ref* pSender)
 {
     director->end();
 }
