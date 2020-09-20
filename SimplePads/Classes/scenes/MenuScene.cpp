@@ -1,5 +1,5 @@
 #include "MenuScene.h"
-#include "settings/Backgound.h"
+#include "settings/Background.h"
 #include <iostream>
 
 #define PATH_IMAGE "images/"
@@ -38,6 +38,10 @@ bool MenuScene::init()
     closeItem->setAnchorPoint(Vec2(0, 1));
     auto closeItemSize = closeItem->getContentSize();
     closeItem->setPosition(Vec2(10, winSize.height - closeItemSize.height));
+
+    //settings = new MenuSceneSettings();
+    //settings->apply(this);
+
     /***********************************************************************************************/
     //cria o menu
     auto menu = Menu::create(closeItem, NULL);

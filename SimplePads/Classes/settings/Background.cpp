@@ -1,4 +1,4 @@
-#include "Backgound.h"
+#include "Background.h"
 
 USING_NS_CC;
 
