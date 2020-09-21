@@ -51,6 +51,7 @@ list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
      Classes/HelloWorldScene.cpp
      Classes/scenes/MenuScene.cpp
+     Classes/scenes/GameScene.cpp
      Classes/custom/CustomTableViewDataSource.cpp
      Classes/custom/ItemList.cpp
      Classes/custom/ListVerticalOrder.cpp
@@ -62,6 +63,7 @@ list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/HelloWorldScene.h
      Classes/scenes/MenuScene.h
+     Classes/scenes/GameScene.h
      Classes/custom/CustomTableViewDataSource.h
      Classes/custom/ItemList.h
      Classes/custom/ListVerticalOrder.h

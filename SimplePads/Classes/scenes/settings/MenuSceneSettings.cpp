@@ -14,11 +14,11 @@ MenuSceneSettings::MenuSceneSettings() :
 
 MenuSceneSettings::~MenuSceneSettings()
 {
-    if (list)
+    /*if (list)
     {
         delete list;
         list = nullptr;
-    }
+    }*/
 }
 
 void MenuSceneSettings::config()
@@ -40,11 +40,11 @@ void MenuSceneSettings::config()
 
     closeItem->setAnchorPoint(Vec2(0, 1));
     auto closeItemSize = closeItem->getContentSize();
-    closeItem->setPosition(Vec2(10, winSize.height - closeItemSize.height));
+    closeItem->setPosition(Vec2(40, winSize.height - 10));
 
     auto x = Sprite::create(PATH_IMAGE "x.png");
 
-    closeItem->setScale(0.8f);
+    //closeItem->setScale(0.8f);
 
     //posiciona o botao com relação a imagem de fundo do botão
     x->setPosition(Vec2(closeItemSize.width/2,closeItemSize.height/2));
@@ -56,9 +56,9 @@ void MenuSceneSettings::config()
     auto bgSize = director->getVisibleSize();
     bgSize.height = bgSize.height -20;
 
-    background = Background::createBgSolidColorI(36,43,46, bgSize);
+    background = Background::createBgSolidColorI(36,43,46);
 
-    list = ListVerticalOrder::create(this, this, Size(400, 400), Vec2(65,-200));
+    list = ListVerticalOrder::create(this, this, Size(741, 650), Vec2(22, 0));
 }
 
 void MenuSceneSettings::apply(cocos2d::Scene *scene)
@@ -79,7 +79,7 @@ void MenuSceneSettings::tableCellTouched(TableView* table, TableViewCell* cell)
 
 Size MenuSceneSettings::tableCellSizeForIndex(TableView *table, ssize_t idx) 
 {
-    return Size(400, 100);
+    return Size(741, 110);
 }
 
 TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx) 

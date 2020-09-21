@@ -30,12 +30,6 @@ bool MenuScene::init()
     if (!Scene::init())
         return false;
 
-    director = Director::getInstance();
-
-    auto winSize = director->getWinSize();
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    auto origin = Director::getInstance()->getVisibleOrigin();
-
     settings = new MenuSceneSettings();
     settings->apply(this);
 

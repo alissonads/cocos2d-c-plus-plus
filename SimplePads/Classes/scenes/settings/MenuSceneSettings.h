@@ -22,7 +22,7 @@ public:
 
     virtual void config() override;
 
-    virtual void apply(cocos2d::Scene *scene);
+    virtual void apply(cocos2d::Scene *scene) override;
 
     virtual void scrollViewDidScroll(cocos2d::extension::ScrollView* view) override {}
 
