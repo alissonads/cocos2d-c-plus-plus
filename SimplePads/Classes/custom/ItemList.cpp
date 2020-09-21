@@ -3,43 +3,85 @@
 USING_NS_CC;
 
 ItemList::ItemList() :
-          component(nullptr)
+          components()
 {}
 
-/*ItemList::ItemList build()
+ItemList::~ItemList()
 {
-    return ItemList();
-}*/
+    /*for (auto item : components)
+    {
+        delete item.second;
+    }*/
 
-ItemList &ItemList::setComponent(Node *component)
+    components.clear();
+}
+
+ItemList &ItemList::setMainComponent(Node *component, 
+                                     const Vec2 &position, 
+                                     const Vec2 &point)
 {
-    this->component = component;
+    return addComponent("", "main", component, position, point);
+}
+
+ItemList &ItemList::addComponent(std::string parent,     
+                                 std::string name, 
+                                 Node *component, 
+                                 const Vec2 &position, 
+                                 const Vec2 &point)
+
+{
+    if (name != "" && components.find(name) == components.end())
+    {
+        components[name] = component;
+        component->setAnchorPoint(point);
+        component->setPosition(position);
+        components[name]->getChildByName(name);
+    }
+    
+    addChild(parent, component);
 
     return (*this);
 }
 
-ItemList &ItemList::addChild(Node *child)
+ItemList &ItemList::setPosition(std::string name, const Vec2 &position)
 {
-    component->addChild(child);
+    if (name != "" && components.find(name) != components.end())
+    {
+        components[name]->setPosition(position);
+    }
 
     return (*this);
 }
 
-ItemList &ItemList::setPosition(const Vec2 &position)
+ItemList &ItemList::addChild(std::string name, Node *child)
 {
-    component->setPosition(position);
+    if (name != "" && components.find(name) != components.end())
+    {
+        components[name]->addChild(child);
+    }
 
     return (*this);
 }
 
-ItemList &ItemList::setAnchorPoint(const Vec2 &point)
+ItemList &ItemList::setAnchorPoint(std::string name, const Vec2 &point)
 {
-    component->setAnchorPoint(point);
+    if (name != "" && components.find(name) != components.end())
+    {
+        components[name]->setAnchorPoint(point);
+    }
 
     return (*this);
 }
 
-cocos2d::Node *ItemList::create() const
+Node *ItemList::getComponent(std::string name)
 {
-    return component;
+    if (name != "" && components.find(name) != components.end())
+        return components[name];
+
+    return nullptr;
+}
+
+Node *ItemList::mainComponent()
+{
+    return components["main"];
 }

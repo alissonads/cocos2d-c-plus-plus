@@ -1,6 +1,7 @@
 #include "MenuSceneSettings.h" 
 #include "Background.h"
 #include "custom/ListVerticalOrder.h"
+#include "custom/ItemList.h"
 
 #define PATH_IMAGE "images/"
 
@@ -40,11 +41,9 @@ void MenuSceneSettings::config()
 
     closeItem->setAnchorPoint(Vec2(0, 1));
     auto closeItemSize = closeItem->getContentSize();
-    closeItem->setPosition(Vec2(40, winSize.height - 10));
+    closeItem->setPosition(Vec2(40, winSize.height - 15));
 
     auto x = Sprite::create(PATH_IMAGE "x.png");
-
-    //closeItem->setScale(0.8f);
 
     //posiciona o botao com relação a imagem de fundo do botão
     x->setPosition(Vec2(closeItemSize.width/2,closeItemSize.height/2));
@@ -91,9 +90,29 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
         cell = new (std::nothrow) TableViewCell();
         cell->autorelease();
 
+        auto item = ItemList();
+        item.setMainComponent(Sprite::create(PATH_IMAGE "menu_item_Back.png"), Vec2::ZERO, Vec2::ZERO)
+            .addComponent("main", "kit", Sprite::create(PATH_IMAGE "placeholder.png"), Vec2(10, 10), Vec2::ZERO);
+
+        auto kitNameSize = item.getComponent("kit")->getContentSize();
+        item.addComponent("kit", "kitLabel", Label::createWithTTF("Kit", "fonts/arial.ttf", 20.0f), Vec2(kitNameSize.width/2, kitNameSize.height/2+10))
+            .addComponent("kit", "kitNameLabel", Label::createWithTTF("Nome", "fonts/arial.ttf", 20.0f), Vec2(kitNameSize.width/2, kitNameSize.height/2-10));
+
+        auto menuItemSize = item.mainComponent()->getContentSize();
+        item.addComponent("main", "adtDetail", Sprite::create(PATH_IMAGE "Rectangle 51.png"), Vec2(menuItemSize.width, 0), Vec2(0, 1));
+
+        auto adtDetailSize = item.getComponent("adtDetail")->getContentSize();
+        item.addComponent("adtDetail", "arrow", Sprite::create(PATH_IMAGE "down_arrow.png"), Vec2(adtDetailSize.width/2, adtDetailSize.height/2))
+            .addComponent("main", "insp", Label::createWithTTF("Inspirado em", "fonts/arial.ttf", 12.0f), Vec2(menuItemSize.width/4 + 20, menuItemSize.height/2 + 40), Vec2(0, 1))
+            .addComponent("main", "MusicName", Label::createWithTTF("Nome da Musica", "fonts/arial.ttf", 18.0f), Vec2(menuItemSize.width/4 + 20, menuItemSize.height/2), Vec2(0, 0.5f))
+            .addComponent("main", "artistName", Label::createWithTTF("Nome do Artista", "fonts/arial.ttf", 14.0f), Vec2(menuItemSize.width/4 + 20, menuItemSize.height/2-10), Vec2(0, 1))
+            .addComponent("main", "bar", Sprite::create(PATH_IMAGE "Rectangle 52.png"), Vec2(menuItemSize.width/4 + 20, menuItemSize.height/2 + 20), Vec2(0, 0.5f));
+            
+        cell->addChild(item.mainComponent());
+
         //if (idx > 20) return cell;
         
-        auto menuItem = Sprite::create(PATH_IMAGE "menu_item_Back.png");
+        /*auto menuItem = Sprite::create(PATH_IMAGE "menu_item_Back.png");
         menuItem->setAnchorPoint(Vec2::ZERO);
         menuItem->setPosition(Vec2::ZERO);
 
@@ -153,7 +172,7 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
 
         menuItem->addChild(bar);
 
-        cell->addChild(menuItem);
+        cell->addChild(menuItem);*/
     }
 
     return cell;
