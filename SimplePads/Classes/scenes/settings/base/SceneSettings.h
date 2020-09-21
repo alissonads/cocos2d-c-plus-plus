@@ -25,7 +25,7 @@ public:
 
     virtual void config() = 0;
 
-    void apply(cocos2d::Scene *scene);
+    virtual void apply(cocos2d::Scene *scene);
 };
 
 #endif//__SCENE_SETTINGS_H__
