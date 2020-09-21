@@ -58,6 +58,7 @@ list(APPEND GAME_SOURCE
      Classes/scenes/settings/Background.cpp
      Classes/scenes/settings/base/SceneSettings.cpp
      Classes/scenes/settings/MenuSceneSettings.cpp
+     Classes/scenes/settings/GameSceneSettings.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -70,6 +71,7 @@ list(APPEND GAME_HEADER
      Classes/scenes/settings/Background.h
      Classes/scenes/settings/base/SceneSettings.h
      Classes/scenes/settings/MenuSceneSettings.h
+     Classes/scenes/settings/GameSceneSettings.h
      )
 
 if(ANDROID)

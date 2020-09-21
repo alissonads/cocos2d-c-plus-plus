@@ -1,5 +1,5 @@
 #include "GameScene.h"
-#include "settings/base/SceneSettings.h"
+#include "settings/GameSceneSettings.h"
 
 USING_NS_CC;
 
@@ -23,5 +23,8 @@ bool GameScene::init()
         return false;
 
     //criar setting
+    settings = new GameSceneSettings();
     settings->apply(this);
+
+    return true;
 }
