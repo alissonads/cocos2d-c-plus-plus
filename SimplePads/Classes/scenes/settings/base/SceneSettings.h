@@ -13,10 +13,9 @@ protected:
     std::string title;
     std::string subtitle;
     Background *background;
-    //Menu
+    cocos2d::Menu *menu;
 
 public:
-    SceneSettings();
     SceneSettings(const std::string title, const std::string subtitle = "");
     virtual ~SceneSettings();
 

@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 
-class SceneScettings;
+class SceneSettings;
 
 class MenuScene : public cocos2d::Scene, 
                   public cocos2d::extension::TableViewDataSource, 
@@ -12,10 +12,12 @@ class MenuScene : public cocos2d::Scene,
 {
 private:
     cocos2d::Director *director;
-    SceneScettings *settings;
+    SceneSettings *settings;
 
 public:
     CREATE_FUNC(MenuScene);
+
+    ~MenuScene();
 
     static cocos2d::Scene *createScene();
 

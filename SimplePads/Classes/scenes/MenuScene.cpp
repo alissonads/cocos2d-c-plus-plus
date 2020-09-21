@@ -1,5 +1,6 @@
 #include "MenuScene.h"
 #include "settings/Background.h"
+#include "settings/MenuSceneSettings.h"
 #include <iostream>
 
 #define PATH_IMAGE "images/"
@@ -10,6 +11,14 @@ USING_NS_CC_EXT;
 /*MenuScene::MenuScene() :
         director(nullptr)
 {}*/
+
+MenuScene::~MenuScene() 
+{
+    if (settings)
+    {
+        delete settings;
+    }
+}
 
 Scene *MenuScene::createScene()
 {
@@ -27,44 +36,21 @@ bool MenuScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
 
-    ///>>Encapsular
-    /*********************** cria e configura o botao de sair *************************************/
-    auto closeItem = MenuItemImage::create(PATH_IMAGE "bck_close.png",
-                                           PATH_IMAGE "bck_close.png",
-                                           /*CC_CALLBACK_1(MenuScene::menuCloseCallback, this)*/
-                                           [](Ref* pSender) {
-                                               Director::getInstance()->end();
-                                           });
-    closeItem->setAnchorPoint(Vec2(0, 1));
-    auto closeItemSize = closeItem->getContentSize();
-    closeItem->setPosition(Vec2(10, winSize.height - closeItemSize.height));
-
-    //settings = new MenuSceneSettings();
-    //settings->apply(this);
-
-    /***********************************************************************************************/
-    //cria o menu
-    auto menu = Menu::create(closeItem, NULL);
-    //posiciona o menu
-    menu->setPosition(Vec2::ZERO);
-    //adiciona o menu a arvore
-    this->addChild(menu, 1);
-
-    //cria o sprite do x do botão
-    auto x = Sprite::create(PATH_IMAGE "x.png");
-    //posiciona o botao com relação a imagem de fundo do botão
-    x->setPosition(Vec2(closeItemSize.width/2,closeItemSize.height/2));
-    //adiciona ao botão
-    closeItem->addChild(x);
-    ////////////////////////>>
-
-    //plano de fundo
-    this->addChild(Background::createBgSolidColorI(36,43,46)->getNode());
+    settings = new MenuSceneSettings();
+    settings->apply(this);
     
     //conteiner de itens do menu musical
-	auto tableView = TableView::create(this, Size(400, 500));
+	auto tableView = TableView::create(this, Size(400, 400));
+    //tableView->initWithViewSize(Size(400, 400), nullptr);
+    //tableView->autorelease();
+    //tableView->setDataSource(dataSource);
+    //tableView->_updateCellPositions();
+    //tableView->_updateContentSize();
+
 	tableView->setDirection(ScrollView::Direction::VERTICAL);
-	tableView->setPosition(Vec2(65,-(winSize.height/2+130)));
+    tableView->setAnchorPoint(Vec2(0,0));
+    tableView->setPosition(Vec2(65,-200));
+	//tableView->setPosition(Vec2(65,-(winSize.height/2+130)));
 	tableView->setDelegate(this);
 	tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
 	this->addChild(tableView);
@@ -84,19 +70,20 @@ void MenuScene::tableCellTouched(TableView* table, TableViewCell* cell)
 
 Size MenuScene::tableCellSizeForIndex(TableView *table, ssize_t idx) 
 {
-    return Size(741, 100);
+    return Size(400, 100);
 }
 
 TableViewCell* MenuScene::tableCellAtIndex(TableView *table, ssize_t idx) 
 {
     auto cell = table->dequeueCell();
-    auto id = StringUtils::format("%ld", static_cast<long>(idx));
 
     if (!cell) 
     {
         cell = new (std::nothrow) TableViewCell();
         cell->autorelease();
 
+        //if (idx > 20) return cell;
+        
         auto menuItem = Sprite::create(PATH_IMAGE "menu_item_Back.png");
         menuItem->setAnchorPoint(Vec2::ZERO);
         menuItem->setPosition(Vec2::ZERO);
@@ -129,7 +116,7 @@ TableViewCell* MenuScene::tableCellAtIndex(TableView *table, ssize_t idx)
 
 ssize_t MenuScene::numberOfCellsInTableView(TableView *table) 
 {
-    return 20;
+    return 25;
 }
 
 void MenuScene::menuCloseCallback(Ref* pSender)

@@ -52,16 +52,18 @@ list(APPEND GAME_SOURCE
      Classes/HelloWorldScene.cpp
      Classes/scenes/MenuScene.cpp
      Classes/custom/CustomTableViewDataSource.cpp
-     Classes/settings/Background.cpp
-     Classes/settings/SceneSettings.cpp
+     Classes/scenes/settings/Background.cpp
+     Classes/scenes/settings/base/SceneSettings.cpp
+     Classes/scenes/settings/MenuSceneSettings.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/HelloWorldScene.h
      Classes/scenes/MenuScene.h
      Classes/custom/CustomTableViewDataSource.h
-     Classes/settings/Background.h
-     Classes/settings/SceneSettings.h
+     Classes/scenes/settings/Background.h
+     Classes/scenes/settings/base/SceneSettings.h
+     Classes/scenes/settings/MenuSceneSettings.h
      )
 
 if(ANDROID)
