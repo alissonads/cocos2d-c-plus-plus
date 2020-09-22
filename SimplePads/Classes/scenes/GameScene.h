@@ -13,6 +13,9 @@ private:
     SceneSettings *settings;
     std::vector<std::string> imageFilesNames;
 
+private:
+    void createPads();
+
 public:
     CREATE_FUNC(GameScene);
 

@@ -5,7 +5,6 @@
 
 #include "cocos2d.h"
 #include <string>
-//#include <iosfwd>
 
 class Background;
 

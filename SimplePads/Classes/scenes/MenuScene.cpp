@@ -1,5 +1,4 @@
 #include "MenuScene.h"
-#include "settings/Background.h"
 #include "settings/MenuSceneSettings.h"
 #include "custom/ListVerticalOrder.h"
 #include <iostream>
