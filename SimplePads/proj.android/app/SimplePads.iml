@@ -42,6 +42,18 @@
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Classes/custom">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/custom" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/scenes">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/scenes" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/scenes/settings">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/scenes/settings" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/scenes/settings/base">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/scenes/settings/base" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Resources">
       <sourceFolder url="file://$MODULE_DIR$/../../Resources" type="java-resource" />
     </content>

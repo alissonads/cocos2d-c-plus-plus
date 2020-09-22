@@ -9,8 +9,8 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 MenuSceneSettings::MenuSceneSettings() :
-                   SceneSettings("Menu Scene"),
-                   list(nullptr)
+                   SceneSettings("Menu Scene")
+                   //list(nullptr)
 {}
 
 MenuSceneSettings::~MenuSceneSettings()
@@ -57,21 +57,21 @@ void MenuSceneSettings::config()
 
     background = Background::createBgSolidColorI(36,43,46);
 
-    list = ListVerticalOrder::create(this, this, Size(winSize.width, 720), Vec2(0, 0));
+    //list = ListVerticalOrder::create(this, this, Size(winSize.width, 720), Vec2(0, 0));
 }
 
 void MenuSceneSettings::apply(cocos2d::Scene *scene)
 {
     SceneSettings::apply(scene);
 
-    if (list)
+    /*if (list)
     {
         scene->addChild(list->getTableView());
         list->reload();
-    }
+    }*/
 }
 
-void MenuSceneSettings::tableCellTouched(TableView* table, TableViewCell* cell)
+/*void MenuSceneSettings::tableCellTouched(TableView* table, TableViewCell* cell)
 {
     CCLOG("cell touched at index: %ld", static_cast<long>(cell->getIdx()));
 }
@@ -79,9 +79,9 @@ void MenuSceneSettings::tableCellTouched(TableView* table, TableViewCell* cell)
 Size MenuSceneSettings::tableCellSizeForIndex(TableView *table, ssize_t idx) 
 {
     return Size(741, 120);
-}
+}*/
 
-TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx) 
+/*TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx) 
 {
     auto cell = table->dequeueCell();
 
@@ -108,7 +108,7 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
             .addComponent("main", "artistName", Label::createWithTTF("Nome do Artista", "fonts/arial.ttf", 14.0f), Vec2(menuItemSize.width/4 + 20, menuItemSize.height/2-10), Vec2(0, 1))
             .addComponent("main", "bar", Sprite::create(PATH_IMAGE "Rectangle 52.png"), Vec2(menuItemSize.width/4 + 20, menuItemSize.height/2 + 20), Vec2(0, 0.5f));
             
-        cell->addChild(item.mainComponent());
+        cell->addChild(item.mainComponent());*/
 
         //if (idx > 20) return cell;
         
@@ -173,7 +173,7 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
         menuItem->addChild(bar);
 
         cell->addChild(menuItem);*/
-    }
+    /*}
 
     return cell;
 }
@@ -181,5 +181,5 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
 ssize_t MenuSceneSettings::numberOfCellsInTableView(TableView *table) 
 {
     return 25;
-}
+}*/
 

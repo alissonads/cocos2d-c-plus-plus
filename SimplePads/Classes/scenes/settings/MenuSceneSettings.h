@@ -4,14 +4,14 @@
 #include "base/SceneSettings.h"
 #include "extensions/cocos-ext.h"
 
-class ListVerticalOrder;
+//class ListVerticalOrder;
 
-class MenuSceneSettings : public SceneSettings, 
-                          public cocos2d::extension::TableViewDataSource, 
-                          public cocos2d::extension::TableViewDelegate
+class MenuSceneSettings : public SceneSettings//, 
+                          //public cocos2d::extension::TableViewDataSource, 
+                          //public cocos2d::extension::TableViewDelegate
 {
-private:
-    ListVerticalOrder *list;
+//private:
+    //ListVerticalOrder *list;
 
 private:
     void configMenu();
@@ -24,7 +24,7 @@ public:
 
     virtual void apply(cocos2d::Scene *scene) override;
 
-    virtual void scrollViewDidScroll(cocos2d::extension::ScrollView* view) override {}
+    /*virtual void scrollViewDidScroll(cocos2d::extension::ScrollView* view) override {}
 
     virtual void scrollViewDidZoom(cocos2d::extension::ScrollView* view) override {}
 
@@ -37,7 +37,7 @@ public:
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, 
                                                                 ssize_t idx) override;
 
-    virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
+    virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;*/
 };
 
 #endif//__MESNU_SCENE_SETTINGS_H__

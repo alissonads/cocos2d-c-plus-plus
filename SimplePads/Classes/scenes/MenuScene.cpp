@@ -1,6 +1,7 @@
 #include "MenuScene.h"
 #include "settings/Background.h"
 #include "settings/MenuSceneSettings.h"
+#include "custom/ListVerticalOrder.h"
 #include <iostream>
 
 #define PATH_IMAGE "images/"
@@ -32,6 +33,12 @@ bool MenuScene::init()
 
     settings = new MenuSceneSettings();
     settings->apply(this);
+
+    auto winSize = Director::getInstance()->getWinSize();
+
+    auto list = ListVerticalOrder::create(Size(winSize.width, 720), Vec2(0, 0));
+    this->addChild(list->getTableView());
+    list->reload();
 
     return true;
 }
