@@ -55,6 +55,7 @@ list(APPEND GAME_SOURCE
      Classes/custom/CustomTableViewDataSource.cpp
      Classes/custom/ItemList.cpp
      Classes/custom/ListVerticalOrder.cpp
+     Classes/custom/GridTiles.cpp
      Classes/scenes/settings/Background.cpp
      Classes/scenes/settings/base/SceneSettings.cpp
      Classes/scenes/settings/MenuSceneSettings.cpp
@@ -68,6 +69,7 @@ list(APPEND GAME_HEADER
      Classes/custom/CustomTableViewDataSource.h
      Classes/custom/ItemList.h
      Classes/custom/ListVerticalOrder.h
+     Classes/custom/GridTiles.cpp
      Classes/scenes/settings/Background.h
      Classes/scenes/settings/base/SceneSettings.h
      Classes/scenes/settings/MenuSceneSettings.h

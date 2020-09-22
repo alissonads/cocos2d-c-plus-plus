@@ -2,6 +2,8 @@
 #define __GAME_SCENE_H__
 
 #include "cocos2d.h"
+#include <vector>
+#include <string>
 
 class SceneSettings;
 
@@ -9,6 +11,7 @@ class GameScene : public cocos2d::Scene
 {
 private:
     SceneSettings *settings;
+    std::vector<std::string> imageFilesNames;
 
 public:
     CREATE_FUNC(GameScene);

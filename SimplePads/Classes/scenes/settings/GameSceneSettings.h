@@ -5,6 +5,10 @@
 
 class GameSceneSettings : public SceneSettings
 {
+private:
+
+    void configMenu();
+
 public:
     GameSceneSettings();
     

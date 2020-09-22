@@ -57,7 +57,7 @@ void MenuSceneSettings::config()
 
     background = Background::createBgSolidColorI(36,43,46);
 
-    list = ListVerticalOrder::create(this, this, Size(741, 650), Vec2(22, 0));
+    list = ListVerticalOrder::create(this, this, Size(winSize.width, 720), Vec2(0, 0));
 }
 
 void MenuSceneSettings::apply(cocos2d::Scene *scene)
@@ -78,7 +78,7 @@ void MenuSceneSettings::tableCellTouched(TableView* table, TableViewCell* cell)
 
 Size MenuSceneSettings::tableCellSizeForIndex(TableView *table, ssize_t idx) 
 {
-    return Size(741, 110);
+    return Size(741, 120);
 }
 
 TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx) 
@@ -91,7 +91,7 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
         cell->autorelease();
 
         auto item = ItemList();
-        item.setMainComponent(Sprite::create(PATH_IMAGE "menu_item_Back.png"), Vec2::ZERO, Vec2::ZERO)
+        item.setMainComponent(Sprite::create(PATH_IMAGE "menu_item_Back.png"), Vec2(20, 0), Vec2::ZERO)
             .addComponent("main", "kit", Sprite::create(PATH_IMAGE "placeholder.png"), Vec2(10, 10), Vec2::ZERO);
 
         auto kitNameSize = item.getComponent("kit")->getContentSize();
@@ -99,7 +99,7 @@ TableViewCell *MenuSceneSettings::tableCellAtIndex(TableView *table, ssize_t idx
             .addComponent("kit", "kitNameLabel", Label::createWithTTF("Nome", "fonts/arial.ttf", 20.0f), Vec2(kitNameSize.width/2, kitNameSize.height/2-10));
 
         auto menuItemSize = item.mainComponent()->getContentSize();
-        item.addComponent("main", "adtDetail", Sprite::create(PATH_IMAGE "Rectangle 51.png"), Vec2(menuItemSize.width, 0), Vec2(0, 1));
+        item.addComponent("main", "adtDetail", Sprite::create(PATH_IMAGE "Rectangle 51.png"), Vec2(menuItemSize.width, 0), Vec2(1, 0));
 
         auto adtDetailSize = item.getComponent("adtDetail")->getContentSize();
         item.addComponent("adtDetail", "arrow", Sprite::create(PATH_IMAGE "down_arrow.png"), Vec2(adtDetailSize.width/2, adtDetailSize.height/2))

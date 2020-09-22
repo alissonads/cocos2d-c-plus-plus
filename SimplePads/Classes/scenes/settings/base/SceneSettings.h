@@ -1,6 +1,8 @@
 #ifndef __SCENE_SETTINGS_H__
 #define __SCENE_SETTINGS_H__
 
+#define PATH_IMAGE "images/"
+
 #include "cocos2d.h"
 #include <string>
 //#include <iosfwd>
