@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ffdbf455-e099-40ea-a77c-f020b45dbfff" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../FairyGUIExemple/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/AppDelegate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../FairyGUIExemple/Classes/AppDelegate.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/BagScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/BagScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/BagWindow.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/BagWindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/BasicsScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/BasicsScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ChatScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ChatScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/CooldownScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/CooldownScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/DemoScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/DemoScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/EmojiParser.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/EmojiParser.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/GuideScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/GuideScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/HitTestScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/HitTestScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/JoystickModule.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/JoystickModule.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/JoystickScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/JoystickScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ListEffectScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ListEffectScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/LoopListScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/LoopListScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/MailItem.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/MailItem.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/MenuScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/MenuScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ModalWaitingScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ModalWaitingScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/PullToRefreshScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/PullToRefreshScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ScrollPaneScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/ScrollPaneScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/TransitionDemoScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/TransitionDemoScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/TreeViewScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/TreeViewScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/VirtualListScene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/VirtualListScene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/Window1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/Window1.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/Window2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/Classes/Window2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FairyGUIExemple/fairygui" beforeDir="false" afterPath="$PROJECT_DIR$/../FairyGUIExemple/fairygui" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="1282" />
+    <option name="width" value="1278" />
+    <option name="height" value="1440" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SimplePads" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SimplePads" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ffdbf455-e099-40ea-a77c-f020b45dbfff" name="Default Changelist" comment="" />
+      <created>1600953311428</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600953311428</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1282" y="0" width="1278" height="1440" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.4017502" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+</project>

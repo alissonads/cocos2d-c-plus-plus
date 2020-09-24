@@ -50,56 +50,21 @@ endif()
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
      Classes/HelloWorldScene.cpp
-     Classes/BagScene.cpp
-     Classes/BagWindow.cpp
-     Classes/BasicsScene.cpp
-     Classes/ChatScene.cpp
-     Classes/CooldownScene.cpp
-     Classes/DemoScene.cpp
-     Classes/EmojiParser.cpp
-     Classes/GuideScene.cpp
-     Classes/HitTestScene.cpp
-     Classes/JoystickModule.cpp
-     Classes/JoystickScene.cpp
-     Classes/ListEffectScene.cpp
-     Classes/LoopListScene.cpp
-     Classes/MailItem.cpp
-     Classes/MenuScene.cpp
-     Classes/ModalWaitingScene.cpp
-     Classes/PullToRefreshScene.cpp
-     Classes/ScrollPaneScene.cpp
-     Classes/TransitionDemoScene.cpp
-     Classes/TreeViewScene.cpp
-     Classes/VirtualListScene.cpp
-     Classes/Window1.cpp
-     Classes/Window2.cpp
+     Classes/Scenes/Base/SceneBase.cpp
+     Classes/Scenes/GameScene.cpp
+     Classes/Scenes/MenuScene.cpp
+     Classes/Scenes/Background.cpp
+     Classes/Custom/CustomFileRequest.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/HelloWorldScene.h
-     Classes/BagScene.h
-     Classes/BagWindow.h
-     Classes/BasicsScene.h
-     Classes/ChatScene.h
-     Classes/CooldownScene.h
-     Classes/DemoScene.h
-     Classes/EmojiParser.h
-     Classes/GuideScene.h
-     Classes/HitTestScene.h
-     Classes/JoystickModule.h
-     Classes/JoystickScene.h
-     Classes/ListEffectScene.h
-     Classes/LoopListScene.h
-     Classes/MailItem.h
-     Classes/MenuScene.h
-     Classes/ModalWaitingScene.h
-     Classes/PullToRefreshScene.h
-     Classes/ScrollPaneScene.h
-     Classes/TransitionDemoScene.h
-     Classes/TreeViewScene.h
-     Classes/VirtualListScene.h
-     Classes/Window1.h
-     Classes/Window2.h
+     Classes/Scenes/Base/SceneBase.h
+     Classes/Scenes/GameScene.h
+     Classes/Scenes/MenuScene.h
+     Classes/Scenes/Background.h
+     Classes/Custom/CustomFileRequest.h
+     Classes/Custom/FileRequestListener.h
      )
 
 if(ANDROID)
