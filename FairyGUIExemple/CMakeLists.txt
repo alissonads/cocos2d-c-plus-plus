@@ -55,6 +55,8 @@ list(APPEND GAME_SOURCE
      Classes/Scenes/MenuScene.cpp
      Classes/Scenes/Background.cpp
      Classes/Custom/CustomFileRequest.cpp
+     Classes/Custom/ItemListBuilder.cpp
+     Classes/Custom/EspecialistLoader.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -65,6 +67,8 @@ list(APPEND GAME_HEADER
      Classes/Scenes/Background.h
      Classes/Custom/CustomFileRequest.h
      Classes/Custom/FileRequestListener.h
+     Classes/Custom/ItemListBuilder.h
+     Classes/Custom/EspecialistLoader.h
      )
 
 if(ANDROID)

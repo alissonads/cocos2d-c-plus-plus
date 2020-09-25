@@ -51,19 +51,21 @@ CustomFileRequest &CustomFileRequest::setRequestType(HttpRequest::Type type)
     return (*this);
 }
 
-void CustomFileRequest::dispatch()
+void CustomFileRequest::toSend()
 {
     request->setResponseCallback([this](HttpClient* sender, HttpResponse* response) {
         if (response->isSucceed())
         {
-            auto buffer = response->getResponseDataString();
+            auto buffer = response->getResponseData();
 
             rapidjson::Document document;
-            document.Parse(buffer);
+            document.Parse(const_cast<char*>(buffer->data()));
 
-            for (auto listener : this->listeners)
+            int size = listeners.size();
+
+            for(int i = 0; i < size; i++)
             {
-                listener->update(document);
+                listeners[i]->update(document);
             }
         }
     });
@@ -72,17 +74,17 @@ void CustomFileRequest::dispatch()
     request->release();
 }
 
-void CustomFileRequest::dispatch(const std::string &url)
+void CustomFileRequest::toSend(const std::string &url)
 {
     request->setUrl(url);
     request->setRequestType(HttpRequest::Type::GET);
     request->setResponseCallback([this](HttpClient* sender, HttpResponse* response) {
         if (response->isSucceed())
         {
-            auto buffer = response->getResponseDataString();
+            auto buffer = response->getResponseData();
 
             rapidjson::Document document;
-            document.Parse(buffer);
+            document.Parse(const_cast<char*>(buffer->data()));
 
             int size = listeners.size();
 

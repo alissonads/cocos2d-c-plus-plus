@@ -26,9 +26,9 @@ public:
 
     CustomFileRequest &setRequestType(cocos2d::network::HttpRequest::Type type);
 
-    void dispatch();
+    void toSend();
 
-    void dispatch(const std::string &url);
+    void toSend(const std::string &url);
 
 };
 

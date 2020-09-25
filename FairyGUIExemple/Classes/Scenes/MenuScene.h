@@ -3,6 +3,7 @@
 
 #include "Base/SceneBase.h"
 #include "Custom/FileRequestListener.h"
+#include <string>
 
 class CustomFileRequest;
 
@@ -17,6 +18,9 @@ private:
 protected:
     virtual void config();
 
+    void addCompentList(const std::string &kit,
+                        const std::string &musicName,
+                        const std::string &artistName);
 public:
     MenuScene();
     ~MenuScene();
