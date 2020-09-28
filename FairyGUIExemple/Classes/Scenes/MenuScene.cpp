@@ -56,6 +56,10 @@ void MenuScene::addCompentList(const std::string &imageUrl,
     text = obj->getChild("artistName");
     text->setText(artistName);
 
+    obj->addClickListener([text](EventContext* context){
+        log("Kit %s", text->getText().data());
+    });
+
     list->addChild(obj);
 }
 

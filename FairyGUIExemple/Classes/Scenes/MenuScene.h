@@ -7,6 +7,18 @@
 
 class CustomFileRequest;
 
+/**
+ * Classe da Sena que representa o Menu do Jogo.
+ * 
+ * Extende da Classe SceneBase
+ * Implementa a FileRequestListener para se tornar ouvinte de uma
+ * requisiçao feita ao servidor pela classe CustomFileRequest.
+ *  
+ * Atrinutos:
+ *   -> request do tipo CustomFileRequest: é um ponteiro para
+ *          um CustomFileRequest. Objeto que fará a requisição
+ *          ao servidor.
+ * */
 class MenuScene : public SceneBase,
                   public FileRequestListener
 {

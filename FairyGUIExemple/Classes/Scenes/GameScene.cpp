@@ -32,3 +32,13 @@ void GameScene::config()
 
     close();
 }
+
+void GameScene::setKitName(const std::string &kitName)
+{
+    this->kitName = kitName;
+}
+
+std::string GameScene::getKitName() const
+{
+    return kitName;
+}
