@@ -9,6 +9,8 @@
 #include "external/json/stringbuffer.h"
 #include "Custom/CustomFileRequest.h"
 #include "Custom/ItemListBuilder.h"
+#include "Custom/EspecialistLoader.h"
+
 #include <vector>
 
 USING_NS_CC;
@@ -36,30 +38,23 @@ void MenuScene::close()
     });
 }
 
-void MenuScene::addCompentList(const std::string &kit,
+void MenuScene::addCompentList(const std::string &imageUrl,
                                const std::string &musicName,
                                const std::string &artistName)
 {
     auto list = view->getChild("list")->as<GList>();
     auto obj = UIPackage::createObject("Menu", "item_list")->as<GComponent>();
 
-    //auto loader = obj->getChild("loader")->as<GLoader>();
-    //loader->setURL("https://storage.kondzilla.opalastudios.com/resources/kondzilla/images/kits/2f0710d1-79a7-4fee-9b86-cfa0d5afacdd");
+    auto loader = obj->getChild("loader")->as<GLoader>();
+    loader->setAutoSize(false);
+    loader->setURL(imageUrl);
+    loader->setScale(0.35f, 0.35f);
     
-    //auto text = obj->getChild("kitName");
-    //text->setText(kit);
-
     auto text = obj->getChild("musicName");
     text->setText(musicName);
 
     text = obj->getChild("artistName");
     text->setText(artistName);
-
-    /*auto obj = ItemListBuilder::builder("Menu", "item_list")
-                    .setText("kitName", kit)
-                    .setText("musicName", musicName)
-                    .setText("artistName", artistName)
-                    .create();*/
 
     list->addChild(obj);
 }
@@ -75,6 +70,10 @@ void MenuScene::config()
     view = UIPackage::createObject("Menu", "main")->as<GComponent>();
     groot->addChild(view);
 
+    UIObjectFactory::setLoaderExtension([](){
+        return EspecialistLoader::create();
+    });
+
     request = new CustomFileRequest();
     request->addFileRequestListener(this)
            .toSend("https://api.kondzilla.opalastudios.com/api/fetch?version=4");
@@ -82,8 +81,11 @@ void MenuScene::config()
     close();
 }
 
-void MenuScene::update(rapidjson::Document &document)
+void MenuScene::applyData(const std::vector<char> &buffer)
 {
+    rapidjson::Document document;
+    document.Parse(const_cast<char*>(buffer.data()));
+    
     if(document.HasMember("kits") && document["kits"].IsArray())
     {
         auto arr = document["kits"].GetArray();
@@ -94,7 +96,7 @@ void MenuScene::update(rapidjson::Document &document)
         {
             auto obj = itr->GetObject();
 
-            addCompentList(obj["name"].GetString(), 
+            addCompentList(obj["imageUrl"].GetString(), 
                            obj["musicName"].GetString(), 
                            obj["authorName"].GetString());
         }

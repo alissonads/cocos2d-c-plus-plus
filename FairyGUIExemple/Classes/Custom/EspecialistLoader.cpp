@@ -3,13 +3,16 @@
 USING_NS_CC;
 USING_NS_FGUI;
 
-EspecialistLoader::EspecialistLoader()
+EspecialistLoader::EspecialistLoader() : 
+                    GLoader(),
+                    texture(nullptr)
 {
     downloader.reset(new network::Downloader());
 }
 
 void EspecialistLoader::loadExternal()
 {
+    //GLoader::loadExternal();
     auto url = getURL();
 
     downloader->onDataTaskSuccess = [this](const cocos2d::network::DownloadTask& task,
@@ -20,24 +23,40 @@ void EspecialistLoader::loadExternal()
         if (!img.initWithImageData(data.data(), data.size()))
             return;
 
-        auto texture = new Texture2D();
+        auto tex = new Texture2D();
 
-        if (!texture->initWithImage(&img))
-            return;
-
-        auto sprite = SpriteFrame::createWithTexture(texture, Rect(Vec2::ZERO, texture->getContentSize()));
-
-        onExternalLoadSuccess(sprite);
-
-        CC_SAFE_RELEASE(texture);
+        if (tex->initWithImage(&img))
+        {
+            auto sprite = SpriteFrame::createWithTexture(tex,
+                                                         Rect(Vec2::ZERO,
+                                                              tex->getContentSize()));
+            onExternalLoadSuccess(sprite);
+        }
+        else
+        {
+            onExternalLoadFailed();
+            CC_SAFE_RELEASE(texture);
+        }
     };  
 
     downloader->createDownloadDataTask(url);
+
+    /*if (texture)
+    {
+        auto sprite = SpriteFrame::createWithTexture(texture, 
+                                                     Rect(Vec2::ZERO, 
+                                                          texture->getContentSize()));
+        onExternalLoadSuccess(sprite);
+    }
+    else
+    {
+        onExternalLoadFailed();
+    }*/
 }
 
 void EspecialistLoader::freeExternal(SpriteFrame* spriteFrame)
 {
-
+    GLoader::freeExternal(spriteFrame);
 }
 
 /*void GLoader::loadExternal()

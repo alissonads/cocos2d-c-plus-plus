@@ -18,7 +18,7 @@ private:
 protected:
     virtual void config();
 
-    void addCompentList(const std::string &kit,
+    void addCompentList(const std::string &imageUrl,
                         const std::string &musicName,
                         const std::string &artistName);
 public:
@@ -29,7 +29,7 @@ public:
 
     static cocos2d::Scene* createScene();
 
-    virtual void update(rapidjson::Document &document);
+    virtual void applyData(const std::vector<char> &buffer);
 };
 
 #endif//__MENU_SCENE_H__
